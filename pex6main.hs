@@ -27,11 +27,24 @@ typeIknot tripCode
    --head doesn't match second; bypass it and check rest of trip code
    | otherwise = head tripCode: typeIknot (tail tripCode)
 
+
+--returns the adjacent pair that has to be in a typeII knot
+typeIIfindPair tripCode
+--no point in looking if a typeII not possible
+   | getLength tripCode < 4 = tripCode
+--if the types are equal and letters unequal -> type II start possible
+   | fst(head tripCode) /= fst(head(tail(tripCode))) && snd(head tripCode) == snd(head(tail(tripCode))) = [(head tripCode),(head(tail tripCode))]
+--else look in the rest of the list
+   | otherwise = typeIIfindPair(tail tripCode)
+
+
 main :: IO ()
 main = do
    let t01 = [('a','o'),('a','u')]
+   let t02 = [('a','o'), ('a','u'), ('b','u'), ('b','o')]
    print("   test case t01 - tripcode: " )
    print(t01)
-   print("   result:" ++ unKnot t01)
+   --print("   result:" ++ unKnot t01)
 
-   print(unKnot(t01))
+   print(typeIknot(t01))
+   print(typeIknot(t02))
