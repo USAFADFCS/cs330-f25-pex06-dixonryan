@@ -6,6 +6,7 @@
 {- DOCUMENTATION:
    - Had to use google to figure out how to get the second guard of the unknot function to compare to another 
       bool in order to satisfy the left side of the equals sign
+   - Used google to look up several error codes -> they're unclear what type of error is being thrown
 -}
 
 unKnot :: [(Char, Char)] -> String
